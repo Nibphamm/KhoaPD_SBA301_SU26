@@ -9,10 +9,13 @@ const emptyForm = {
   status: 'active',
 }
 
+// Modal thêm/sửa user (có validation)
+// Props: show, onHide, onSubmit, user (null = thêm mới), loading
 export default function UserForm({ show, onHide, onSubmit, user, loading }) {
   const [form, setForm] = useState(emptyForm)
   const [errors, setErrors] = useState({})
 
+  // Điền data khi chỉnh sửa, reset khi thêm mới
   useEffect(() => {
     if (user) {
       setForm({
@@ -57,7 +60,7 @@ export default function UserForm({ show, onHide, onSubmit, user, loading }) {
       setErrors(validationErrors)
       return
     }
-    onSubmit(form)
+    onSubmit(form) // gọi handler từ UsersPage
   }
 
   return (

@@ -5,9 +5,11 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 import LoginPage from './pages/LoginPage'
 import UsersPage from './pages/UsersPage'
 
+// Route yêu cầu đăng nhập
 function PrivateRoute({ children }) {
   const { currentUser, initializing } = useAuth()
 
+  // Chưa kiểm tra xong localStorage → chờ, không điều hướng sớm
   if (initializing) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>

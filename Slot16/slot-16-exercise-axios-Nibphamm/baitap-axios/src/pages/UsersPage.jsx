@@ -27,7 +27,7 @@ export default function UsersPage() {
   const [filterRole, setFilterRole] = useState('')
 
   const [showForm, setShowForm] = useState(false)
-  const [editUser, setEditUser] = useState(null)
+  const [editUser, setEditUser] = useState(null) // null = thêm mới
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState('')
 
@@ -39,6 +39,7 @@ export default function UsersPage() {
 
   const showToast = (message, type = 'success') => setToast({ message, type })
 
+  // GET /users (lọc role phía server)
   const fetchUsers = useCallback(async () => {
     setLoading(true)
     setError(null)
@@ -58,6 +59,7 @@ export default function UsersPage() {
     fetchUsers()
   }, [fetchUsers])
 
+  // Tìm kiếm client-side
   const filtered = users.filter(
     (u) =>
       u.fullName.toLowerCase().includes(search.toLowerCase()) ||
@@ -77,6 +79,7 @@ export default function UsersPage() {
     setShowForm(true)
   }
 
+  // POST / PUT
   const handleSubmit = async (formData) => {
     setFormLoading(true)
     setFormError('')
@@ -97,6 +100,7 @@ export default function UsersPage() {
     }
   }
 
+  // PATCH (toggle status, optimistic update)
   const handleToggleStatus = async (user) => {
     const newStatus = user.status === 'active' ? 'inactive' : 'active'
     try {
@@ -109,6 +113,7 @@ export default function UsersPage() {
     }
   }
 
+  // DELETE
   const handleDeleteConfirm = async () => {
     try {
       await userApi.remove(deleteTarget.id)

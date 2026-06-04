@@ -7,12 +7,14 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  // Cờ báo đang kiểm tra localStorage lúc khởi động (tránh điều hướng sớm)
   const [initializing, setInitializing] = useState(true)
 
+  // Khôi phục session khi app khởi động
   useEffect(() => {
     const saved = localStorage.getItem('current_user')
     if (saved) setCurrentUser(JSON.parse(saved))
-    setInitializing(false)
+    setInitializing(false) // đã kiểm tra xong
   }, [])
 
   const login = async (username, password) => {
@@ -46,6 +48,7 @@ export function AuthProvider({ children }) {
   )
 }
 
+// Hook tiện dụng để dùng AuthContext
 export function useAuth() {
   return useContext(AuthContext)
 }

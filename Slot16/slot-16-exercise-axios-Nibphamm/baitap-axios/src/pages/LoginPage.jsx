@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Container, Card, Form, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../context/AuthContext'
 
+// Trang đăng nhập
 export default function LoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

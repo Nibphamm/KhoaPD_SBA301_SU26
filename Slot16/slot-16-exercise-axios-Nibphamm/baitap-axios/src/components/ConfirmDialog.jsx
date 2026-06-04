@@ -1,5 +1,6 @@
 import { Modal, Button } from 'react-bootstrap'
 
+// Hộp thoại xác nhận xóa
 export default function ConfirmDialog({
   show,
   onHide,
