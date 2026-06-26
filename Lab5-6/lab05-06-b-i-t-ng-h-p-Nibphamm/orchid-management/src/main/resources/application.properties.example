@@ -1,0 +1,14 @@
+server.port=8005
+
+spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=OrchidDB;encrypt=true;trustServerCertificate=true
+spring.datasource.username=sa
+spring.datasource.password=YOUR_PASSWORD
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+
+# Sinh bằng: openssl rand -hex 32  (chuỗi hex 64 ký tự)
+application.security.jwt.secret-key=YOUR_SECRET_KEY
+application.security.jwt.expiration=86400000
